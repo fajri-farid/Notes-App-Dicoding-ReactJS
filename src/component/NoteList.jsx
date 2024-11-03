@@ -2,7 +2,7 @@ import { formatDate } from "../utils/formatDate";
 import { Button } from "./atoms/Button";
 
 export const NotesList = (props) => (
-  <div className="p-6 md:p-10">
+  <div className="p-6 md:-p10">
     <h2 className="text-2xl font-bold mb-6">Catatan</h2>
     <div className="flex flex-wrap justify-normal">
       {props.notes.map((note) => (

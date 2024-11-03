@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "./atoms/Button";
 import { Input } from "./atoms/Input";
+import { toast } from "react-hot-toast";
 
 export const CreateNotes = (props) => {
   const [title, setTitle] = useState("");
@@ -12,8 +13,9 @@ export const CreateNotes = (props) => {
       props.addNote(title, body);
       setTitle("");
       setBody("");
+      toast.success("Buat catatan berhasil!");
     } else {
-      alert(props.alertMessage || "Judul dan isi catatan tidak boleh kosong!");
+      toast.error("Harap isi semua form!");
     }
   };
 

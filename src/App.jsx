@@ -4,6 +4,7 @@ import { CreateNotes } from "./component/CreateNotes";
 import { NotesList } from "./component/NoteList";
 import { ArchivedNotesList } from "./component/ArchivedNotesList";
 import mockedData from "./utils/mockedData";
+import { Toaster, toast } from "react-hot-toast";
 
 function App() {
   const [notes, setNotes] = useState(mockedData);
@@ -28,6 +29,7 @@ function App() {
   const deleteNote = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
     setArchivedNotes(archivedNotes.filter((note) => note.id !== id));
+    toast.success("Catatan berhasil dihapus!");
   };
 
   const archiveNote = (id) => {
@@ -38,6 +40,7 @@ function App() {
         { ...noteToArchive, archived: true },
       ]);
       setNotes(notes.filter((note) => note.id !== id));
+      toast.success("Catatan berhasil diarsipkan!");
     }
   };
 
@@ -46,6 +49,7 @@ function App() {
     if (noteToMove) {
       setNotes([...notes, { ...noteToMove, archived: false }]);
       setArchivedNotes(archivedNotes.filter((note) => note.id !== id));
+      toast.success("Catatan berhasil dipindahkan ke catatan!");
     }
   };
 
@@ -55,6 +59,9 @@ function App() {
 
   return (
     <>
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
       <Header
         searchQuery={searchQuery}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
